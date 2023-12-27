@@ -24,5 +24,5 @@ app.get('/contact', (req, res) => {
 // Puedes agregar más rutas según sea necesario para otras secciones
 
 app.listen(port, () => {
-  console.log(`La API está escuchando`);
+  console.log(`La API está escuchando en http://localhost:${port}`);
 });
