@@ -14,6 +14,7 @@ app.use(express.json());
 // routes
 // app.use(require('./routers'));
 // app.use('/api/movies', require('./routes/movies'));
+app.use('/api/@zioo', require('./routers/@zioo'));
 app.use('/api/config', require('./routers/config'));
 
 // Manejo de errors global
