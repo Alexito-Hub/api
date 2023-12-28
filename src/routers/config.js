@@ -1,6 +1,6 @@
 require('../config')
 const { Router } = require('express');
-const fs = require('fs');
+const fs = require('fs/promises');
 const path = require('path');
 const router = new Router();
 
