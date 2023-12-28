@@ -11,9 +11,9 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 // routes
-app.use(require('./src/routes'));
+app.use(require('../src/routes'));
 // app.use('/api/movies', require('./routes/movies'));
-app.use('/api/config', require('./routes/config'));
+app.use('/api/config', require('../src/routes/config'));
 
 // Manejo de errors global
 app.use((err, req, res, next) => {
