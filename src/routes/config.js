@@ -1,10 +1,10 @@
-require('../config')
+require('../src/config')
 const { Router } = require('express');
 const fs = require('fs/promises');
 const path = require('path');
 const router = new Router();
 
-const configFilePath = path.join(__dirname, '../json/config.json');
+const configFilePath = path.join(__dirname, '../src/json/config.json');
 
 router.get('/', async (req, res) => {
   try {
