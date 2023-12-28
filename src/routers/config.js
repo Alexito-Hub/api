@@ -16,16 +16,11 @@ router.get('/', async (req, res) => {
       result: config
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      creator: global.name,
-      status: 500,
-      result: { error: 'Error al obtener la configuración' }
-    });
+      
   }
 });
 
-router.put('/', async (req, res) => {
+/* router.put('/', async (req, res) => {
   try {
     const configData = await fs.readFile(configFilePath, 'utf-8');
     let config = JSON.parse(configData);
@@ -44,6 +39,6 @@ router.put('/', async (req, res) => {
       result: { error: 'Error al actualizar la configuración' }
     }, null, 2);
   }
-});
+}) */
 
 module.exports = router;
