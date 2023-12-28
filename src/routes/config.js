@@ -1,4 +1,4 @@
-require('../src/config')
+require('../config')
 const { Router } = require('express');
 const fs = require('fs/promises');
 const path = require('path');
