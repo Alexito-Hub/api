@@ -14,14 +14,14 @@ router.get('/', async (req, res) => {
       creator: global.name,
       status: 200,
       result: config
-    }, null, 2);
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({
       creator: global.name,
       status: 500,
       result: { error: 'Error al obtener la configuración' }
-    }, null, 2);
+    });
   }
 });
 
