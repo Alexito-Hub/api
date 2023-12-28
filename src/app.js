@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 // routes
-app.use(require('.src/routes'));
+app.use(require('./src/routes'));
 // app.use('/api/movies', require('./routes/movies'));
 app.use('/api/config', require('./routes/config'));
 
