@@ -13,7 +13,7 @@ app.use(express.json());
 // routes
 // app.use(require('./routers'));
 // app.use('/api/movies', require('./routes/movies'));
-app.use('/api/config', require('./routes/config'));
+app.use('/api/config', require('./routers/config'));
 
 // Manejo de errors global
 app.use((err, req, res, next) => {
