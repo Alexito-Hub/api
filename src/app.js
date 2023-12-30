@@ -3,7 +3,7 @@ require('./data');
 const express = require('express');
 const morgan = require('morgan');
 const app = express();
-const resKey = require('./keys');
+const resKey = require('./edit');
 
 const name = global.name
 // settings

@@ -2,7 +2,7 @@ require('../data')
 const { Router } = require('express');
 const router = new Router();
 const parser = require('body-parser');
-const resKey = require('../keys');
+const resKey = require('../edit');
 
 const name = global.name
 router.use(parser.json());

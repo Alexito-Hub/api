@@ -1,7 +1,7 @@
 const fs = require('fs/promises');
 const path = require('path');
 
-const keysFilePath = path.join(__dirname, './keys.json');
+const keysFilePath = path.join(__dirname, '../json/keys.json');
 
 // Obtener todas las claves
 const getKeys = async () => {
