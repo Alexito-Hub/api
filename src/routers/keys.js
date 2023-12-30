@@ -7,6 +7,26 @@ const resKey = require('../edit');
 const name = global.name
 router.use(parser.json());
 
+router.get('/', async (req, res) => {
+  try {
+    const configData = await fs.readFile(configFilePath, 'utf-8');
+    const config = JSON.parse(configData);
+    res.json({
+      creator: global.name,
+      status: 200,
+      result: config
+    }, null, 2);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      creator: global.name,
+      status: 500,
+      result: { error: 'Error al obtener la configuración' }
+    }, null, 2);
+  }
+});
+
+
 router.post('/', async (req, res) => {
   try {
     const { key, limit, status } = req.body;
