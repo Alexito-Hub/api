@@ -7,7 +7,9 @@ const keysFilePath = path.join(__dirname, './json/keys.json');
 const getKeys = async () => {
   try {
     const keysData = await fs.readFile(keysFilePath, 'utf-8');
-    return JSON.parse(keysData).keys;
+    const parsedKeys = JSON.parse(keysData);
+    console.log(parsedKeys); // Agrega este console.log para verificar el contenido
+    return parsedKeys.keys;
   } catch (error) {
     console.error(error);
     throw new Error('Error al obtener las claves');

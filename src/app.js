@@ -38,7 +38,7 @@ app.use(async (req, res, next) => {
 
     // Obtiene todas las claves
     const keys = await resKey.getKeys();
-
+    console.log(keys)
     // Busca la clave en el arreglo
     const keyObject = keys.find(key => key.key === providedKey);
 
