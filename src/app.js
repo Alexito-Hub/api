@@ -29,7 +29,7 @@ app.use('/api/keys', (req, res, next) => {
 
   next();
 });
-app.use('/api/keys', require('./routers/keys.js'))
+app.use('/api/keys', require('./routers/keys'))
 
 
 // Middleware para verificar la clave en todas las solicitudes
