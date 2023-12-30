@@ -28,6 +28,37 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/:key', async (req, res) => {
+  try {
+    const requestedKey = req.params.key;
+    const keys = await resKey.getKeys();
+    
+    if (!keys || !Array.isArray(keys)) {
+      return res.status(500).json({
+        creator: name,
+        status: 500,
+        result: { error: 'Error al obtener las claves' }
+      });
+    }
+
+    const keyObject = keys.find(key => key.key === requestedKey);
+
+    res.status(200).json({
+      creator: name,
+      status: 200,
+      result: keyObject
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      creator: name,
+      status: 500,
+      result: { error: 'Error al procesar la clave' }
+    });
+  }
+});
+
 
 router.post('/', async (req, res) => {
   try {
@@ -69,7 +100,6 @@ router.put('/', async (req, res) => {
   }
 });
 
-// Eliminar una clave
 router.delete('/', async (req, res) => {
   try {
     const { key } = req.body;
