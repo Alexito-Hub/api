@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     const random = lifeTips[Math.floor(Math.random() * lifeTips.length)];
     
     res.status(200).json({
-      creator: globsl.name,
+      creator: global.name,
       status: 200,
       result: { message: random }
     });
