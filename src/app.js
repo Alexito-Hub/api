@@ -78,6 +78,8 @@ app.use(async (req, res, next) => {
 app.use('/api/@zioo', require('./routers/@zioo'));
 app.use('/api/config', require('./routers/config'));
 
+app.get('/favicon.ico', (req, res) => res.status(204));
+
 app.use((req, res) => {
   res.status(404).json({
     creator: name,
