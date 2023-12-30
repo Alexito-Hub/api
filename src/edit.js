@@ -3,12 +3,10 @@ const path = require('path');
 
 const keysFilePath = path.join(__dirname, './json/keys.json');
 
-// Obtener todas las claves
 const getKeys = async () => {
   try {
     const keysData = await fs.readFile(keysFilePath, 'utf-8');
     const parsedKeys = JSON.parse(keysData);
-    console.log(parsedKeys); // Agrega este console.log para verificar el contenido
     return parsedKeys.keys;
   } catch (error) {
     console.error(error);
