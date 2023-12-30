@@ -38,10 +38,17 @@ app.use(async (req, res, next) => {
 
     // Obtiene todas las claves
     const keys = await resKey.getKeys();
-    console.log(keys)
+    
+    if (!keys || !Array.isArray(keys)) {
+      return res.status(500).json({
+        creator: 'name',
+        status: 500,
+        result: { error: 'Error al obtener las claves' }
+      });
+    }
+
     // Busca la clave en el arreglo
     const keyObject = keys.find(key => key.key === providedKey);
-
     if (!keyObject || !keyObject.status) {
       return res.status(401).json({
         creator: 'name',
