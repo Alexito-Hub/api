@@ -15,22 +15,6 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
-// key unica
-app.use('/api/keys', (req, res, next) => {
-  const providedKey = req.query.key;
-  const apiKey = process.env.API_KEY;
-
-  if (providedKey !== apiKey) {
-    return res.status(401).json({
-      creator: 'name',
-      status: 401,
-      result: { error: 'Clave única inválida' }
-    });
-  }
-
-  next();
-});
-
 // Middleware para verificar la clave en todas las solicitudes
 app.use(async (req, res, next) => {
   try {
@@ -41,7 +25,7 @@ app.use(async (req, res, next) => {
     
     if (!keys || !Array.isArray(keys)) {
       return res.status(500).json({
-        creator: 'name',
+        creator: name,
         status: 500,
         result: { error: 'Error al obtener las claves' }
       });
@@ -51,7 +35,7 @@ app.use(async (req, res, next) => {
     const keyObject = keys.find(key => key.key === providedKey);
     if (!keyObject || !keyObject.status) {
       return res.status(401).json({
-        creator: 'name',
+        creator: name,
         status: 401,
         result: { error: 'Clave inválida o desactivada' }
       });
@@ -60,7 +44,7 @@ app.use(async (req, res, next) => {
     // Verifica el límite de uso
     if (keyObject.limit <= 0) {
       return res.status(403).json({
-        creator: 'name',
+        creator: name,
         status: 403,
         result: { error: 'Límite de uso alcanzado para la clave' }
       });
@@ -77,11 +61,26 @@ app.use(async (req, res, next) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      creator: 'name',
+      creator: name,
       status: 500,
       result: { error: 'Error al procesar la clave' }
     });
   }
+});
+
+app.use('/api/keys', (req, res, next) => {
+  const providedKey = req.query.key;
+  const apiKey = process.env.API_KEY;
+
+  if (providedKey !== apiKey) {
+    return res.status(401).json({
+      creator: name,
+      status: 401,
+      result: { error: 'Clave única inválida' }
+    });
+  }
+
+  next();
 });
 
 // routes
@@ -91,7 +90,7 @@ app.use('/api/keys', require('./routers/keys.js'))
 
 app.use((req, res) => {
   res.status(404).json({
-    creator: 'name',
+    creator: name,
     status: 404,
     result: { error: 'Ruta no encontrada' }
   });
@@ -101,7 +100,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
-    creator: 'name',
+    creator: name,
     status: 500,
     result: { error: 'Algo salió mal' }
   });
