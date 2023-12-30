@@ -76,6 +76,7 @@ app.use(async (req, res, next) => {
 
 app.use('/api/@zioo', require('./routers/@zioo'));
 app.use('/api/config', require('./routers/config'));
+app.use('/api/life', require('./routers/life'));
 
 app.use((req, res) => {
   res.status(404).json({
