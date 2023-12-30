@@ -3,9 +3,10 @@ const { Router } = require('express');
 const router = new Router();
 const parser = require('body-parser');
 const resKey = require('../edit');
+const fs = require('fs/promises');
+const path = require('path');
 
 const name = global.name
-router.use(parser.json());
 
 router.get('/', async (req, res) => {
   try {
