@@ -7,6 +7,7 @@ const fs = require('fs/promises');
 const path = require('path');
 
 const name = global.name
+const configFilePath = path.join(__dirname, '../json/@zioo.json');
 
 router.get('/', async (req, res) => {
   try {
