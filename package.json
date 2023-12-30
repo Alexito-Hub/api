@@ -2,12 +2,12 @@
   "name": "api",
   "version": "1.0.0",
   "description": "Api",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Alessandro",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
@@ -17,5 +17,14 @@
     "mongoose": "^8.0.3",
     "morgan": "^1.10.0",
     "path": "^0.12.7"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexito-Hub/api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Alexito-Hub/api/issues"
+  },
+  "homepage": "https://github.com/Alexito-Hub/api#readme"
 }
