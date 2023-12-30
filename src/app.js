@@ -17,7 +17,6 @@ app.use(express.json());
 app.use('/api/keys', (req, res, next) => {
   const providedKey = req.query.key;
   const apiKey = process.env.API_KEY;
-  console.log(process.env.API_KEY);
   if (providedKey !== apiKey) {
     return res.status(401).json({
       creator: name,
@@ -77,8 +76,6 @@ app.use(async (req, res, next) => {
 
 app.use('/api/@zioo', require('./routers/@zioo'));
 app.use('/api/config', require('./routers/config'));
-
-app.get('/favicon.ico', (req, res) => res.status(204));
 
 app.use((req, res) => {
   res.status(404).json({
