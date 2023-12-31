@@ -9,16 +9,28 @@ router.get('/', async (req, res) => {
   try {
     const usersData = await fs.readFile(usersFilePath, 'utf-8');
     const users = JSON.parse(usersData);
-    res.json(users);
+
+    res.json({
+      creator: global.name,
+      status: 200,
+      result: users
+    });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al obtener usuarios' });
+
+    res.status(500).json({
+      creator: global.name,
+      status: 500,
+      result: { error: 'Error al obtener usuarios' }
+    });
   }
 });
+
 
 router.post('/', async (req, res) => {
   try {
     const { number, name, gender, age, email } = req.body;
+    
     const newUser = {
       number,
       name,
@@ -36,10 +48,18 @@ router.post('/', async (req, res) => {
 
     await fs.writeFile(usersFilePath, JSON.stringify(users, null, 2));
 
-    res.status(201).json({ message: 'Usuario agregado exitosamente' });
+    res.status(201).json({
+      creator: global.name,
+      status: 201,
+      result: { message: 'Usuario agregado exitosamente' }
+    });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al agregar usuario' });
+    res.status(500).json({
+      creator: global.name,
+      status: 500,
+      result: { error: 'Error al agregar usuario' }
+    });
   }
 });
 
@@ -53,13 +73,25 @@ router.get('/:number', async (req, res) => {
     const user = users.find(user => user.number === userNumber);
 
     if (user) {
-      res.json(user);
+      res.json({
+        creator: global.name,
+        status: 200,
+        result: user
+      });
     } else {
-      res.status(404).json({ error: 'Usuario no encontrado' });
+      res.status(404).json({
+        creator: global.name,
+        status: 404,
+        result: { error: 'Usuario no encontrado' }
+      });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al obtener usuario' });
+    res.status(500).json({
+      creator: global.name,
+      status: 500,
+      result: { error: 'Error al obtener usuario' }
+    });
   }
 });
 
@@ -76,26 +108,37 @@ router.put('/:number', async (req, res) => {
     if (userIndex !== -1) {
       users[userIndex] = {
         ...users[userIndex],
-        ...(name && { name }),
-        ...(gender && { gender }),
-        ...(age && { age }),
-        ...(email && { email }),
-        ...(warning !== undefined && { warning }),
-        ...(limit !== undefined && { limit }),
+        name,
+        gender,
+        age,
+        email,
+        advertencia: warning !== undefined ? warning : users[userIndex].advertencia,
+        limit: limit !== undefined ? limit : users[userIndex].limit,
       };
 
       await fs.writeFile(usersFilePath, JSON.stringify(users, null, 2));
 
-      res.json({ message: 'Usuario actualizado exitosamente' });
+      res.json({
+        creator: global.name,
+        status: 200,
+        result: { message: 'Usuario actualizado exitosamente' }
+      });
     } else {
-      res.status(404).json({ error: 'Usuario no encontrado' });
+      res.status(404).json({
+        creator: global.name,
+        status: 404,
+        result: { error: 'Usuario no encontrado' }
+      });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al actualizar usuario' });
+    res.status(500).json({
+      creator: global.name,
+      status: 500,
+      result: { error: 'Error al actualizar usuario' }
+    });
   }
 });
-
 
 router.delete('/:number', async (req, res) => {
   try {
@@ -108,15 +151,30 @@ router.delete('/:number', async (req, res) => {
 
     if (users.length !== updatedUsers.length) {
       await fs.writeFile(usersFilePath, JSON.stringify(updatedUsers, null, 2));
-      res.json({ message: 'Usuario eliminado exitosamente' });
+
+      res.json({
+        creator: global.name,
+        status: 200,
+        result: { message: 'Usuario eliminado exitosamente' }
+      });
     } else {
-      res.status(404).json({ error: 'Usuario no encontrado' });
+      res.status(404).json({
+        creator: global.name,
+        status: 404,
+        result: { error: 'Usuario no encontrado' }
+      });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al eliminar usuario' });
+
+    res.status(500).json({
+      creator: global.name,
+      status: 500,
+      result: { error: 'Error al eliminar usuario' }
+    });
   }
 });
+
 
 module.exports = router;
 
