@@ -14,6 +14,9 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
+
+app.use('/api/users', require('./routers/_user'));
+
 app.use('/api/keys', (req, res, next) => {
   const providedKey = req.query.key;
   const apiKey = process.env.API_KEY;
