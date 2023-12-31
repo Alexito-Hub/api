@@ -3,7 +3,7 @@ const router = new Router();
 const fs = require('fs/promises');
 const path = require('path');
 
-const usersFilePath = path.join(__dirname, '../json/_users.json');
+const usersFilePath = path.join(__dirname, '../json/_user.json');
 
 router.get('/', async (req, res) => {
   try {
