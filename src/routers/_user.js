@@ -80,7 +80,6 @@ router.put('/:number', async (req, res) => {
   try {
     const { name, age, gender, email, premium, warning, limit } = req.body;
 
-    // Validación de tipos de datos
     if (
       (premium !== undefined && typeof premium !== 'boolean') ||
       (warning !== undefined && typeof warning !== 'number') ||

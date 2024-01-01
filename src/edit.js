@@ -15,7 +15,6 @@ const getKeys = async () => {
   }
 };
 
-// Agregar una nueva clave
 const addKey = async (newKey) => {
   try {
     const keysData = await fs.readFile(keysFilePath, 'utf-8');
@@ -33,20 +32,17 @@ const updateKey = async (requestedKey, updatedFields) => {
     const keysData = await fs.readFile(keysFilePath, 'utf-8');
     const parsedKeys = JSON.parse(keysData);
 
-    // Busca la clave específica en el array de claves
     const keyIndex = parsedKeys.keys.findIndex(key => key.key === requestedKey);
 
     if (keyIndex === -1) {
       throw new Error('Clave no encontrada');
     }
 
-    // Actualiza solo los campos proporcionados
     parsedKeys.keys[keyIndex] = {
       ...parsedKeys.keys[keyIndex],
       ...updatedFields
     };
 
-    // Guarda los cambios en el archivo
     await fs.writeFile(keysFilePath, JSON.stringify(parsedKeys, null, 2));
 
   } catch (error) {
@@ -55,9 +51,6 @@ const updateKey = async (requestedKey, updatedFields) => {
   }
 };
 
-
-
-// Eliminar una clave
 const deleteKey = async (keyToDelete) => {
   try {
     const keysData = await fs.readFile(keysFilePath, 'utf-8');
