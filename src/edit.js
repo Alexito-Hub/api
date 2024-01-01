@@ -7,14 +7,14 @@ const usersFilePath = path.join(__dirname, './json/_user.json');
 const getKeys = async () => {
   try {
     const keysData = await fs.readFile(keysFilePath, 'utf-8');
-    const parsedKeys = JSON.parse(keysData);
-    return parsedKeys.keys;
+    return JSON.parse(keysData).keys;
   } catch (error) {
     console.error(error);
     throw new Error('Error al obtener las claves');
   }
 };
 
+// Agregar una nueva clave
 const addKey = async (newKey) => {
   try {
     const keysData = await fs.readFile(keysFilePath, 'utf-8');
@@ -27,30 +27,26 @@ const addKey = async (newKey) => {
   }
 };
 
-const updateKey = async (requestedKey, updatedFields) => {
+// Modificar una clave existente
+const updateKey = async (keyToUpdate) => {
   try {
     const keysData = await fs.readFile(keysFilePath, 'utf-8');
-    const parsedKeys = JSON.parse(keysData);
+    const keys = JSON.parse(keysData);
+    const existingKeyIndex = keys.keys.findIndex(key => key.key === keyToUpdate.key);
 
-    const keyIndex = parsedKeys.keys.findIndex(key => key.key === requestedKey);
-
-    if (keyIndex === -1) {
+    if (existingKeyIndex !== -1) {
+      keys.keys[existingKeyIndex] = keyToUpdate;
+      await fs.writeFile(keysFilePath, JSON.stringify(keys, null, 2), 'utf-8');
+    } else {
       throw new Error('Clave no encontrada');
     }
-
-    parsedKeys.keys[keyIndex] = {
-      ...parsedKeys.keys[keyIndex],
-      ...updatedFields
-    };
-
-    await fs.writeFile(keysFilePath, JSON.stringify(parsedKeys, null, 2));
-
   } catch (error) {
     console.error(error);
     throw new Error('Error al actualizar la clave');
   }
 };
 
+// Eliminar una clave
 const deleteKey = async (keyToDelete) => {
   try {
     const keysData = await fs.readFile(keysFilePath, 'utf-8');
@@ -63,7 +59,6 @@ const deleteKey = async (keyToDelete) => {
     throw new Error('Error al eliminar la clave');
   }
 };
-
 async function getUsers() {
   try {
     const data = await fs.readFile(usersFilePath, 'utf-8');
