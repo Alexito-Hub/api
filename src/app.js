@@ -14,9 +14,6 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
-
-app.use('/api/users', require('./routers/_user'));
-
 app.use('/api/keys', (req, res, next) => {
   const providedKey = req.query.key;
   const apiKey = process.env.API_KEY;
@@ -79,6 +76,7 @@ app.use(async (req, res, next) => {
 
 app.use('/api/@zioo', require('./routers/@zioo'));
 app.use('/api/config', require('./routers/config'));
+app.use('/api/users', require('./routers/_user'));
 app.use('/api/life', require('./routers/life'));
 
 app.use((req, res) => {

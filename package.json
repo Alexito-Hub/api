@@ -4,6 +4,7 @@
   "description": "Api",
   "main": "src/app.js",
   "scripts": {
+    "start": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,9 +17,9 @@
     "fs": "^0.0.1-security",
     "mongoose": "^8.0.3",
     "morgan": "^1.10.0",
+    "nodemon": "^3.0.2",
     "path": "^0.12.7"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Alexito-Hub/api.git"

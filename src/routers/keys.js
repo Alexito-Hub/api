@@ -80,20 +80,39 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/', async (req, res) => {
+router.put('/:key', async (req, res) => {
+  const requestedKey = req.params.key;
+  const { limit, status } = req.body;
+
   try {
-    const { key, limit, status } = req.body;
-    const updatedKey = { key, limit, status };
-    await resKey.updateKey(updatedKey);
+    const allowedFields = ['limit', 'status'];
+
+    // Filtra solo los campos permitidos
+    const updatedFields = Object.fromEntries(
+      Object.entries(req.body).filter(([key]) => allowedFields.includes(key))
+    );
+
+    // Si no hay campos permitidos en la solicitud, retorna un error
+    if (Object.keys(updatedFields).length === 0) {
+      return res.status(400).json({
+        creator: global.name,
+        status: 400,
+        result: { error: 'Debe proporcionar campos válidos para actualizar' }
+      });
+    }
+
+    // Actualiza la clave con los campos proporcionados
+    await resKey.updateKey(requestedKey, updatedFields);
+
     res.status(200).json({
-      creator: name,
+      creator: global.name,
       status: 200,
       result: { message: 'Clave actualizada exitosamente' }
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      creator: name,
+      creator: global.name,
       status: 500,
       result: { error: 'Error al actualizar la clave' }
     });

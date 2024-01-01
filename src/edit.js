@@ -2,6 +2,7 @@ const fs = require('fs/promises');
 const path = require('path');
 
 const keysFilePath = path.join(__dirname, './json/keys.json');
+const usersFilePath = path.join(__dirname, './json/_user.json');
 
 const getKeys = async () => {
   try {
@@ -27,24 +28,34 @@ const addKey = async (newKey) => {
   }
 };
 
-// Modificar una clave existente
-const updateKey = async (keyToUpdate) => {
+const updateKey = async (requestedKey, updatedFields) => {
   try {
     const keysData = await fs.readFile(keysFilePath, 'utf-8');
-    const keys = JSON.parse(keysData);
-    const existingKeyIndex = keys.keys.findIndex(key => key.key === keyToUpdate.key);
+    const parsedKeys = JSON.parse(keysData);
 
-    if (existingKeyIndex !== -1) {
-      keys.keys[existingKeyIndex] = keyToUpdate;
-      await fs.writeFile(keysFilePath, JSON.stringify(keys, null, 2), 'utf-8');
-    } else {
+    // Busca la clave específica en el array de claves
+    const keyIndex = parsedKeys.keys.findIndex(key => key.key === requestedKey);
+
+    if (keyIndex === -1) {
       throw new Error('Clave no encontrada');
     }
+
+    // Actualiza solo los campos proporcionados
+    parsedKeys.keys[keyIndex] = {
+      ...parsedKeys.keys[keyIndex],
+      ...updatedFields
+    };
+
+    // Guarda los cambios en el archivo
+    await fs.writeFile(keysFilePath, JSON.stringify(parsedKeys, null, 2));
+
   } catch (error) {
     console.error(error);
     throw new Error('Error al actualizar la clave');
   }
 };
+
+
 
 // Eliminar una clave
 const deleteKey = async (keyToDelete) => {
@@ -60,7 +71,66 @@ const deleteKey = async (keyToDelete) => {
   }
 };
 
+async function getUsers() {
+  try {
+    const data = await fs.readFile(usersFilePath, 'utf-8');
+    const users = JSON.parse(data).users;
+    return users;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getUser(number) {
+  try {
+    const users = await getUsers();
+    const user = users.find(u => u.number === number);
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function addUser(newUser) {
+  try {
+    const users = await getUsers();
+    users.push(newUser);
+    await fs.writeFile(usersFilePath, JSON.stringify({ users }, null, 2));
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function updateUser(number, updatedUser) {
+  try {
+    const users = await getUsers();
+    const index = users.findIndex(u => u.number === number);
+
+    if (index !== -1) {
+      users[index] = { ...users[index], ...updatedUser };
+      await fs.writeFile(usersFilePath, JSON.stringify({ users }, null, 2));
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function deleteUser(number) {
+  try {
+    const users = await getUsers();
+    const filteredUsers = users.filter(u => u.number !== number);
+    await fs.writeFile(usersFilePath, JSON.stringify({ users: filteredUsers }, null, 2));
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
+  getUsers,
+  getUser,
+  addUser,
+  updateUser,
+  deleteUser,
   getKeys,
   addKey,
   updateKey,

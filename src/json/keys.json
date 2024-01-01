@@ -2,14 +2,28 @@
   "keys": [
     {
       "key": "zio",
-      "limit": 1000,
+      "limit": 999999,
       "status": true
     },
     {
       "key": "TeamFX",
       "limit": 500,
       "status": false
+    },
+    {
+      "key": "ZioAPI",
+      "limit": 99994,
+      "status": true
+    },
+    {
+      "key": "Star",
+      "limit": 9999,
+      "status": true
+    },
+    {
+      "key": "JeffAPI",
+      "limit": 999999,
+      "status": false
     }
-    
   ]
 }

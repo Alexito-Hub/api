@@ -1,3 +1,24 @@
 {
-  "users": []
+  "users": [
+    {
+      "number": "968374620",
+      "name": "John Doe",
+      "age": 18,
+      "gender": "femenino",
+      "email": "aleee@ex.com",
+      "premium": false,
+      "warning": 0,
+      "limit": 1000
+    },
+    {
+      "number": "6383848589",
+      "name": "zio",
+      "age": 17,
+      "gender": "masculino",
+      "email": "ale@ex.com",
+      "premium": false,
+      "warning": 0,
+      "limit": 1000
+    }
+  ]
 }
