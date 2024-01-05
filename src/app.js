@@ -26,8 +26,6 @@ app.get('/', (req, res) => {
 const DateKey = (req, res, next) => {
   const providedKey = req.query.key;
   const apiKey = process.env.API_KEY;
-  console.log('API Key from .env:', process.env.API_KEY);
-  console.log('Provided Key:', providedKey);
   if (providedKey !== apiKey) {
     return res.status(401).json({
       creator: name,
@@ -90,7 +88,7 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.use('/api/life', require('./api/routers/frase'));
+app.use('/api/frase', require('./api/routers/frase'));
 app.use('/api/ytdl-mp4', require('./api/routers/ytdl-mp4')); 
 app.use('/api/ytdl-mp3', require('./api/routers/ytdl-mp3')); 
 app.use('/api/ytdl-search', require('./api/routers/ytdl-search')); 
