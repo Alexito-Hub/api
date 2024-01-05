@@ -13,12 +13,20 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
-// Middleware para validar la clave única
+app.use(express.static(path.join(__dirname, 'others')));
+
+app.get('/', (req, res) => {
+	res.sendFile(path.join(__dirname, 'others', 'index.html'));
+});
+
+app.use((req, res) => {
+	res.status(404).sendFile(path.join(__dirname, 'others', '404.html'));
+});
 const DateKey = (req, res, next) => {
   const providedKey = req.query.key;
   const apiKey = process.env.API_KEY;
   console.log('API Key from .env:', process.env.API_KEY);
-  console.log('Provided Key:', providedKey); // Agrega este log
+  console.log('Provided Key:', providedKey);
   if (providedKey !== apiKey) {
     return res.status(401).json({
       creator: name,
@@ -32,9 +40,9 @@ const DateKey = (req, res, next) => {
 
 
 app.use('/data', DateKey);
-app.use('/data/keys', require('./routers/keys'));
-app.use('/data/users', require('./routers/_user'));
-app.use('/data/config', require('./routers/config'));
+app.use('/data/keys', require('./data/routers/keys'));
+app.use('/data/users', require('./data/routers/_user'));
+app.use('/data/config', require('./data/routers/config'));
 
 app.use(async (req, res, next) => {
   try {
@@ -81,10 +89,10 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.use('/api/life', require('./routers/life'));
-app.use('/api/ytdl-mp4', require('./routers/ytdl-mp4')); 
-app.use('/api/ytdl-mp3', require('./routers/ytdl-mp3')); 
-app.use('/api/ytdl-search', require('./routers/ytdl-search')); 
+app.use('/api/life', require('./api/routers/frase'));
+app.use('/api/ytdl-mp4', require('./api/routers/ytdl-mp4')); 
+app.use('/api/ytdl-mp3', require('./api/routers/ytdl-mp3')); 
+app.use('/api/ytdl-search', require('./api/routers/ytdl-search')); 
 
 app.use((req, res) => {
   res.status(404).json({
