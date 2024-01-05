@@ -39,9 +39,9 @@ const DateKey = (req, res, next) => {
 
 
 app.use('/data', DateKey);
-app.use('/data/keys', require('../data/routers/keys'));
-app.use('/data/users', require('../data/routers/_user'));
-app.use('/data/config', require('../data/routers/config'));
+app.use('/data/keys', require('./data/routers/keys'));
+app.use('/data/users', require('./data/routers/_user'));
+app.use('/data/config', require('./data/routers/config'));
 
 app.use(async (req, res, next) => {
   try {
@@ -88,10 +88,10 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.use('/api/frase', require('../api/routers/frase'));
-app.use('/api/ytdl-mp4', require('../api/routers/ytdl-mp4')); 
-app.use('/api/ytdl-mp3', require('../api/routers/ytdl-mp3')); 
-app.use('/api/ytdl-search', require('../api/routers/ytdl-search')); 
+app.use('/api/frase', require('./api/routers/frase'));
+app.use('/api/ytdl-mp4', require('./api/routers/ytdl-mp4')); 
+app.use('/api/ytdl-mp3', require('./api/routers/ytdl-mp3')); 
+app.use('/api/ytdl-search', require('./api/routers/ytdl-search')); 
 
 app.use((req, res) => {
   res.status(404).json({

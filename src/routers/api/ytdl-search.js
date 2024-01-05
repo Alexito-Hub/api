@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const ytSearch = require('yt-search');
 const router = new Router();
-const resKey = require('../edit'); 
+const resKey = require('../../edit'); 
 
 router.get('/', async (req, res) => {
   try {

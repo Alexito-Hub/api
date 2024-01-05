@@ -1,10 +1,10 @@
-require('../data')
+require('../../data')
 const { Router } = require('express');
 const router = new Router();
 const fs = require('fs/promises');
 const path = require('path');
 
-const lifePath = path.join(__dirname, '../json/frase.json');
+const lifePath = path.join(__dirname, '../../json/frase.json');
 
 router.get('/', async (req, res) => {
   try {

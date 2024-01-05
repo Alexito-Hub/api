@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = new Router();
 const parser = require('body-parser');
-const resUser = require('../edit');
+const resUser = require('../../edit');
 
 router.get('/', async (req, res) => {
   try {

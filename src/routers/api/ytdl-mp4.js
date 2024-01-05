@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const ytdl = require('ytdl-core');
 const router = new Router();
-const resKey = require('../edit')
+const resKey = require('../../edit')
 
 router.get('/', async (req, res) => {
   try {
