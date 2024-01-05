@@ -14,6 +14,11 @@ const getKeys = async () => {
   }
 };
 
+const getKey = async (key) => {
+  const keys = await getKeys();
+  return keys.find(k => k.key === key) || null;
+};
+
 // Agregar una nueva clave
 const addKey = async (newKey) => {
   try {

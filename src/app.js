@@ -4,7 +4,6 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express();
 const resKey = require('./edit');
-
 const name = global.name
 
 app.set('port', process.env.PORT || 3000);
@@ -14,9 +13,12 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
-app.use('/api/keys', (req, res, next) => {
+// Middleware para validar la clave única
+const DateKey = (req, res, next) => {
   const providedKey = req.query.key;
   const apiKey = process.env.API_KEY;
+  console.log('API Key from .env:', process.env.API_KEY);
+  console.log('Provided Key:', providedKey); // Agrega este log
   if (providedKey !== apiKey) {
     return res.status(401).json({
       creator: name,
@@ -26,8 +28,13 @@ app.use('/api/keys', (req, res, next) => {
   }
 
   next();
-});
-app.use('/api/keys', require('./routers/keys'))
+};
+
+
+app.use('/data', DateKey);
+app.use('/data/keys', require('./routers/keys'));
+app.use('/data/users', require('./routers/_user'));
+app.use('/data/config', require('./routers/config'));
 
 app.use(async (req, res, next) => {
   try {
@@ -74,10 +81,10 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.use('/api/@zioo', require('./routers/@zioo'));
-app.use('/api/config', require('./routers/config'));
-app.use('/api/users', require('./routers/_user'));
 app.use('/api/life', require('./routers/life'));
+app.use('/api/ytdl-mp4', require('./routers/ytdl-mp4')); 
+app.use('/api/ytdl-mp3', require('./routers/ytdl-mp3')); 
+app.use('/api/ytdl-search', require('./routers/ytdl-search')); 
 
 app.use((req, res) => {
   res.status(404).json({

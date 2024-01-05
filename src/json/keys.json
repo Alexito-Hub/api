@@ -6,24 +6,14 @@
       "status": true
     },
     {
-      "key": "TeamFX",
-      "limit": 500,
-      "status": false
-    },
-    {
       "key": "ZioAPI",
-      "limit": 99994,
-      "status": true
-    },
-    {
-      "key": "Star",
-      "limit": 9999,
+      "limit": 99999,
       "status": true
     },
     {
       "key": "JeffAPI",
       "limit": 999999,
-      "status": false
+      "status": true
     }
   ]
 }
