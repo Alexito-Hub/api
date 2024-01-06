@@ -13,14 +13,14 @@ app.set('json spaces', 2);
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, './', 'public')));
+app.use(express.static(path.join(__dirname, '../', 'public')));
 
 app.use((req, res) => {
-	res.status(404).sendFile(path.join(__dirname, './', 'public', '404.html'));
+	res.status(404).sendFile(path.join(__dirname, '../', 'public', '404.html'));
 });
 
 app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, './', 'public', 'index.html'));
+	res.sendFile(path.join(__dirname, '../', 'public', 'index.html'));
 });
 
 const DateKey = (req, res, next) => {
