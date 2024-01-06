@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     const data = response.data;
 
     const result = {
-      creator: 'TeamFX',
+      creator: 'Zioo',
       status: '200',
       result: {
         author: {
@@ -68,8 +68,8 @@ router.get('/', async (req, res) => {
     res.json(result);
   } catch (error) {
     res.status(500).json({ 
-      creator: 'TeamFX', 
-      status: false, 
+      creator: 'Zioo', 
+      status: 500, 
       message: '[!] ' + error 
     });
   }
