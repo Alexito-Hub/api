@@ -87,6 +87,17 @@ app.use('/api/frase', require('./routers/api/frase'));
 app.use('/api/ytdl-mp4', require('./routers/api/ytdl-mp4')); 
 app.use('/api/ytdl-mp3', require('./routers/api/ytdl-mp3')); 
 app.use('/api/ytdl-search', require('./routers/api/ytdl-search')); 
+app.get('/api', (req, res) => {
+	res.sendFile(path.join(__dirname, '../', 'public', 'api.html'));
+});
+app.get('/panel', (req, res) => {
+	res.sendFile(path.join(__dirname, '../', 'public', 'panel.html'));
+});
+app.get('/contacts', (req, res) => {
+	res.sendFile(path.join(__dirname, '../', 'public', 'contacts.html'));
+});
+
+
 
 app.use((req, res) => {
 	res.status(404).sendFile(path.join(__dirname, '../', 'public', '404.html'));
