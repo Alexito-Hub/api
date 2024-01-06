@@ -15,10 +15,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../', 'public')));
 
-app.use((req, res) => {
-	res.status(404).sendFile(path.join(__dirname, '../', 'public', '404.html'));
-});
-
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '../', 'public', 'index.html'));
 });
@@ -36,7 +32,6 @@ const DateKey = (req, res, next) => {
 
   next();
 };
-
 
 app.use('/data', DateKey);
 app.use('/data/keys', require('./routers/data/keys'));
@@ -94,11 +89,7 @@ app.use('/api/ytdl-mp3', require('./routers/api/ytdl-mp3'));
 app.use('/api/ytdl-search', require('./routers/api/ytdl-search')); 
 
 app.use((req, res) => {
-  res.status(404).json({
-    creator: name,
-    status: 404,
-    result: { error: 'Ruta no encontrada' }
-  });
+	res.status(404).sendFile(path.join(__dirname, '../', 'public', '404.html'));
 });
 
 app.use((err, req, res, next) => {
