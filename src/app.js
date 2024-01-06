@@ -98,6 +98,7 @@ app.use('/api/ytdl-mp3', require('./routers/api/ytdl-mp3'));
 app.use('/api/ytdl-search', require('./routers/api/ytdl-search')); 
 app.use('/api/tiktok', require('./routers/api/tiktok')); 
 app.use('/api/translator', require('./routers/api/translator')); 
+app.use('/api/openai', require('./routers/api/openai')); 
 
 app.use((req, res) => {
 	res.status(404).sendFile(path.join(__dirname, '../', 'public', '404.html'));
