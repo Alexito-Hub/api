@@ -2,7 +2,7 @@ require('../../data')
 const { Router } = require('express');
 const router = new Router();
 const parser = require('body-parser');
-const resKey = require('../edit');
+const resKey = require('../../edit');
 const fs = require('fs/promises');
 const path = require('path');
 
