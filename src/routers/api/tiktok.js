@@ -5,7 +5,7 @@ const router = new Router();
 
 router.get('/', async (req, res) => {
   try {
-    const { url } = req.query.url;
+    const { url } = req.query
     const apiUrl = `https://api.tiklydown.eu.org/api/download?url=${url}`;
     const response = await axios.get(apiUrl);
     const data = response.data;
