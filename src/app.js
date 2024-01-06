@@ -41,7 +41,7 @@ const DateKey = (req, res, next) => {
 app.use('/data', DateKey);
 app.use('/data/keys', require('./routers/data/keys'));
 app.use('/data/users', require('./routers/data/_user'));
-app.use('/data/config', require('./data/routers/data/config'));
+app.use('/data/config', require('./routers/data/config'));
 
 app.use(async (req, res, next) => {
   try {
