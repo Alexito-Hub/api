@@ -111,7 +111,7 @@ router.get('/', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       status: "error",
-      message: "Error al procesar la solicitud de Twitter.",
+      message: "[!]" + error,
     });
   }
 });
