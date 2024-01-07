@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 
     if (!url) {
       return res.status(400).json({
-        creator: 'TeamFX',
+        creator: 'Zioo',
         status: 400,
         message: 'La URL es requerida.'
       });
@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
     }
 
     res.json({
-      creator: 'TeamFX',
+      creator: 'Zioo',
       status: 200,
       result: dataList
     });

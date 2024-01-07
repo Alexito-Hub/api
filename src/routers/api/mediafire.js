@@ -10,7 +10,7 @@ router.get('/', async (req, res, next) => {
     .then(async (data) => {
       if (!data) return res.json('error');
       res.json({
-        creator: 'TeamFX',
+        creator: 'Zioo',
         status: 200,
         result: data
       });
