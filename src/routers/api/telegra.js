@@ -1,5 +1,5 @@
-const express = require('express');
-const router = express.Router();
+const { Router } = require('express');
+const router = new Router();
 const axios = require('axios');
 const fs = require('fs');
 
