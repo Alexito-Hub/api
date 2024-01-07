@@ -100,6 +100,11 @@ app.use('/api/tiktok', require('./routers/api/tiktok'));
 app.use('/api/translator', require('./routers/api/translator')); 
 app.use('/api/openai', require('./routers/api/openai')); 
 
+app.use('/api/fbdl', require('./routers/api/facebook')); 
+app.use('/api/mediafire', require('./routers/api/mediafire')); 
+app.use('/api/instagram', require('./routers/api/instagram')); 
+app.use('/api/pinterest', require('./routers/api/pinterest')); 
+
 app.use((req, res) => {
 	res.status(404).sendFile(path.join(__dirname, '../', 'public', '404.html'));
 });
