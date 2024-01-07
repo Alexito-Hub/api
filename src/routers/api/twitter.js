@@ -105,7 +105,7 @@ const TwitterDL = async (url) => {
 
 router.get('/', async (req, res) => {
   try {
-    const url = req.query.url;
+    const { url } = req.query
     const twitterData = await TwitterDL(url);
     res.json(twitterData);
   } catch (error) {
