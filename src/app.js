@@ -104,6 +104,7 @@ app.use('/api/tiktok', require('./routers/api/tiktok'));
 app.use('/api/openai', require('./routers/api/openai'));
 app.use('/api/frase', require('./routers/api/frase'));
 app.use('/api/fbdl', require('./routers/api/facebook')); 
+app.use('/api/telegraph', require('./routers/api/telegra')); 
 
 app.use((req, res) => {
 	res.status(404).sendFile(path.join(__dirname, '../', 'public', '404.html'));
