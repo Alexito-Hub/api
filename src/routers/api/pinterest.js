@@ -20,7 +20,7 @@ async function expandURL(shortenURL) {
 }
 
 
-router.get("/pinterest", async (req, res) => {
+router.get("/", async (req, res) => {
     var { url } = req.query
     try {
         if (url.match("pin.it")) url = await expandURL(url);
@@ -54,28 +54,46 @@ router.get("/pinterest", async (req, res) => {
         } catch (_) {}
 
         console.log(outUrl);
-
+        
+        const pin = 
         res.status(200).send({
-            url: outUrl,
-            title: url.match("pin.it") ? "Pinterest shorten url" : "Pinterest full url",
-            type: type,
-            titleURL: title,
-            decsURL: desc
+            creator: 'Zioo',
+            status: 200,
+            result: {
+                url: outUrl,
+                title: url.match("pin.it") ? "Pinterest shorten url" : "Pinterest full url",
+                type: type,
+                titleURL: title,
+                decsURL: desc
+            },
         });
     } catch (error) {
         console.log(error);
-        res.status(500).send({ error });
+        res.status(500).send({
+            creator: 'Zioo',
+            status: 500,
+            message: '[!] Hubo un error inesperado.'
+        });
     }
 });
 
-module.exports = router;
-
-
-
-
-
-
-
+router.get('/:q', async (req, res) => {
+    const q = req.params.q
+    try {
+        const pinterestData = await pinterest(query);
+        res.json({
+            creator: 'Zioo',
+            status: 500,
+            result: pinterestData
+        });
+    } catch (error) {
+        res.status(500).json({
+            creator: 'Zioo',
+            status: 500,
+            message: 'Error al procesar la solicitud'
+        });
+    }
+})
 
 async function pinterest(query) {
   try {
@@ -105,3 +123,5 @@ async function pinterest(query) {
     throw error;
   }
 }
+
+module.exports = router;

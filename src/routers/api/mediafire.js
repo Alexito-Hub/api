@@ -8,7 +8,7 @@ router.get('/', async (req, res, next) => {
   
   mediafiredl(url)
     .then(async (data) => {
-      if (!data) return res.json('error');
+      if (!data) return res.json('[!] Hubo un error inesperado.');
       res.json({
         creator: 'Zioo',
         status: 200,
@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
       });
     })
     .catch(e => {
-      res.json('error');
+      res.json('[!] Hubo un error inesperado.');
     });
 });
 

@@ -43,8 +43,8 @@ router.get('/', async (req, res) => {
   } catch (error) {
     console.error('Error al obtener los datos de Instagram:', error);
     res.status(500).json({ 
-      creator: 'TeamFX', 
-      status: false, 
+      creator: 'Zioo', 
+      status: 500, 
       message: '[!] Error al obtener los datos de Instagram.' 
     });
   }

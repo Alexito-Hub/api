@@ -15,8 +15,8 @@ router.get('/', async (req, res) => {
   } catch (error) {
     console.error('Error al descargar desde Facebook:', error.message);
     res.status(500).json({
-      creator: 'TeamFX',
-      status: false,
+      creator: 'Zioo',
+      status: 500,
       message: '[!] Error al descargar desde Facebook.' 
     });
   }
