@@ -77,7 +77,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.get('/:q', async (req, res) => {
+/* router.get('/:q', async (req, res) => {
     const q = req.params.q
     try {
         const pinterestData = await pinterest(q);
@@ -122,6 +122,6 @@ async function pinterest(query) {
   } catch (error) {
     throw error;
   }
-}
+} */
 
 module.exports = router;

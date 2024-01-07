@@ -99,7 +99,7 @@ app.use('/api/instagram', require('./routers/api/instagram'));
 app.use('/api/pinterest', require('./routers/api/pinterest')); 
 app.use('/api/ytdl-mp4', require('./routers/api/ytdl-mp4')); 
 app.use('/api/ytdl-mp3', require('./routers/api/ytdl-mp3')); 
-app.use('/api/twitter', require('./routers/api/twitter'));
+// app.use('/api/twitter', require('./routers/api/twitter'));
 app.use('/api/tiktok', require('./routers/api/tiktok')); 
 app.use('/api/openai', require('./routers/api/openai'));
 app.use('/api/frase', require('./routers/api/frase'));
