@@ -1,12 +1,20 @@
 const { Router } = require('express');
+const axios = require('axios');
 const router = new Router();
-
 const instagramDl = require("@sasmeee/igdl");
 
 router.get('/', async (req, res) => {
   try {
-    const url = req.query.url;
-    
+    const { url } = req.query
+
+    if (!url) {
+      return res.status(400).json({
+        creator: 'TeamFX',
+        status: 400,
+        message: 'La URL es requerida.'
+      });
+    }
+
     const dataList = await instagramDl(url);
 
     for (const result of dataList) {
@@ -23,6 +31,7 @@ router.get('/', async (req, res) => {
         result.file_extension = fileExtension;
       } catch (error) {
         console.error('Error al obtener datos de descarga:', error);
+        // Puedes manejar el error de manera más detallada si es necesario
       }
     }
 
@@ -40,6 +49,8 @@ router.get('/', async (req, res) => {
     });
   }
 });
+
+module.exports = router;
 
 function getFileExtension(contentType) {
   switch (contentType) {

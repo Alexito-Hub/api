@@ -4,11 +4,11 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 router.get('/', async (req, res, next) => {
-  const {url} = req.query
+  const { url } = req.query
   
   mediafiredl(url)
     .then(async (data) => {
-      if (!data) return res.json(errorMessages.logHandle.noturl);
+      if (!data) return res.json('error');
       res.json({
         creator: 'TeamFX',
         status: 200,
@@ -16,9 +16,11 @@ router.get('/', async (req, res, next) => {
       });
     })
     .catch(e => {
-      res.json(errorMessages.logHandle.noturl);
+      res.json('error');
     });
 });
+
+module.exports = router;
 
 async function mediafiredl(url) {
   try {
