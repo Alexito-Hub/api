@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const fetch = require('node-fetch');
 const { JSDOM } = require('jsdom');
 const router = new Router();
 
