@@ -80,7 +80,7 @@ router.get("/", async (req, res) => {
 router.get('/:q', async (req, res) => {
     const q = req.params.q
     try {
-        const pinterestData = await pinterest(query);
+        const pinterestData = await pinterest(q);
         res.json({
             creator: 'Zioo',
             status: 500,
