@@ -1,13 +1,11 @@
-const { Router } = require('express');
-const router = new Router();
+const express = require('express');
+const router = express.Router();
 const axios = require('axios');
-const multer = require('multer');
-const FormData = require('form-data');
-const upload = multer({ dest: 'uploads/' }); 
+const fs = require('fs');
 
-router.post('/upload', upload.single('file'), async (req, res) => {
+router.post('/upload', async (req, res) => {
   try {
-    const { path } = req.file;
+    const { path } = req.body; // Espera que el cliente envíe la ruta del archivo en el cuerpo de la solicitud
 
     if (!fs.existsSync(path)) {
       return res.status(404).json({
@@ -24,9 +22,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
     });
 
     const telegraphURL = `https://telegra.ph${response.data[0].src}`;
-
-    fs.unlinkSync(path);
-
+    
     res.status(200).json({
       status: 200,
       result: { telegraphURL }
