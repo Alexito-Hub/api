@@ -92,17 +92,18 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.use('/api/frase', require('./routers/api/frase'));
-app.use('/api/ytdl-mp4', require('./routers/api/ytdl-mp4')); 
-app.use('/api/ytdl-mp3', require('./routers/api/ytdl-mp3')); 
 app.use('/api/ytdl-search', require('./routers/api/ytdl-search')); 
-app.use('/api/tiktok', require('./routers/api/tiktok')); 
 app.use('/api/translator', require('./routers/api/translator')); 
-app.use('/api/openai', require('./routers/api/openai')); 
-app.use('/api/fbdl', require('./routers/api/facebook')); 
 app.use('/api/mediafire', require('./routers/api/mediafire')); 
 app.use('/api/instagram', require('./routers/api/instagram')); 
 app.use('/api/pinterest', require('./routers/api/pinterest')); 
+app.use('/api/ytdl-mp4', require('./routers/api/ytdl-mp4')); 
+app.use('/api/ytdl-mp3', require('./routers/api/ytdl-mp3')); 
+app.use('/api/twitter', require('./routers/api/twitter'));
+app.use('/api/tiktok', require('./routers/api/tiktok')); 
+app.use('/api/openai', require('./routers/api/openai'));
+app.use('/api/frase', require('./routers/api/frase'));
+app.use('/api/fbdl', require('./routers/api/facebook')); 
 
 app.use((req, res) => {
 	res.status(404).sendFile(path.join(__dirname, '../', 'public', '404.html'));
