@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const fetch = require('node-fetch');
 const { JSDOM } = require('jsdom');
-const router = newRouter();
+const router = new Router();
 
 async function expandURL(shortenURL) {
   const uri = new URL(shortenURL);
