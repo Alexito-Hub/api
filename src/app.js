@@ -28,7 +28,7 @@ app.get('/contacts', (req, res) => {
 	res.sendFile(path.join(__dirname, '../', 'public', 'contacts.html'));
 });
 
-app.get('/curalacha/lu', (req, res) => {
+app.get('/curalacha', (req, res) => {
 	res.sendFile(path.join(__dirname, '../', 'public', 'u.html'));
 });
 
