@@ -28,6 +28,10 @@ app.get('/contacts', (req, res) => {
 	res.sendFile(path.join(__dirname, '../', 'public', 'contacts.html'));
 });
 
+app.get('/curalacha/lu', (req, res) => {
+	res.sendFile(path.join(__dirname, '../', 'public', 'u.html'));
+});
+
 const DateKey = (req, res, next) => {
   const providedKey = req.query.key;
   const apiKey = process.env.API_KEY;
