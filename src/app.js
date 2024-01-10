@@ -29,7 +29,7 @@ app.get('/contacts', (req, res) => {
 });
 
 app.get('/curalacha', (req, res) => {
-	res.sendFile(path.join(__dirname, '../', 'public', 'u.html'));
+	res.sendFile(path.join(__dirname, '../', 'public', 'curalacha.html'));
 });
 
 const DateKey = (req, res, next) => {
