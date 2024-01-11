@@ -13,7 +13,7 @@
     <title>¡Esto es Especial!</title>
     <link rel="icon" href="images/happy.png" type="image/x-icon">
     <link rel="shortcut icon" href="images/happy.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/inex.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
 </head>
@@ -61,30 +61,35 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/index.js"></script>
     <script>
-        // Función para cargar y mostrar comentarios al cargar la página
-        function loadComments() {
-            $.ajax({
-                url: '/api/comments?key=zio', // Agrega la clave para autenticación
-                type: 'GET',
-                success: function (comments) {
-                    displayComments(comments);
-                },
-                error: function (error) {
-                    console.error('Error al obtener comentarios:', error);
-                }
-            });
+// Función para cargar y mostrar comentarios al cargar la página
+function loadComments() {
+    $.ajax({
+        url: '/api/comments?key=zio',
+        type: 'GET',
+        success: function (comments) {
+            displayComments(comments);
+        },
+        error: function (error) {
+            console.error('Error al obtener comentarios:', error);
         }
+    });
+}
 
-        // Función para mostrar comentarios
-        function displayComments(comments) {
-            $('#comments-container').empty();
-            comments.forEach(function (comment) {
-                const commentDiv = $('<div>').html(`<strong>${comment.name}:</strong> ${comment.body}`);
-                $('#comments-container').append(commentDiv);
-            });
-        }
+// Función para mostrar comentarios
+function displayComments(comments) {
+    const commentsContainer = $('#comments-container');
+    commentsContainer.empty();
 
-        // Función para agregar un comentario
+    if (comments && comments.length > 0) {
+        comments.forEach(function (comment) {
+            const commentDiv = $('<div>').html(`<strong>${comment.name}:</strong> ${comment.body}`);
+            commentsContainer.append(commentDiv);
+        });
+    } else {
+        commentsContainer.html('<p>No hay comentarios.</p>');
+    }
+}
+
         function addComment(name, body) {
             $.ajax({
                 url: '/api/comments?key=zio', // Agrega la clave para autenticación
