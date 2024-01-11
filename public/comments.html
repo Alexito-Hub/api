@@ -88,7 +88,7 @@
         // Función para agregar un comentario
         function addComment(name, body) {
             $.ajax({
-                url: '/api/comments',
+                url: '/api/comments?key=zio',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({ name: name, body: body }),
