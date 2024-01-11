@@ -38,7 +38,7 @@ app.get('/curalacha/lu', (req, res) => {
 });
 
 app.get('/curalacha/lu/comentarios', (req, res) => {
-    res.sendFile(path.join(__dirname, '../', 'public', 'comments.ios.html'));
+    res.sendFile(path.join(__dirname, '../', 'public', 'comments.html'));
 });
 
 
