@@ -5,15 +5,19 @@ const path = require('path');
 const commentsPath = path.join(__dirname, '../../json/comments.json');
 
 // Middleware para obtener comentarios
+// Middleware para obtener comentarios
 router.get('/', (req, res) => {
   try {
     // Lee el archivo de comentarios
-    const comments = JSON.parse(fs.readFileSync(commentsPath, 'utf-8'));
+    const commentsData = fs.readFileSync(commentsPath, 'utf-8');
     
+    // Verifica si el archivo está vacío o no contiene un JSON válido
+    const comments = commentsData ? JSON.parse(commentsData) : [];
+
     // Retorna los comentarios como respuesta JSON
     res.json({
       status: 200,
-      comments: comments || [],
+      comments: comments,
     });
   } catch (error) {
     console.error(error);
@@ -58,5 +62,6 @@ router.post('/', (req, res) => {
     });
   }
 });
+
 
 module.exports = router;
