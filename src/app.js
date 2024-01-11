@@ -33,13 +33,9 @@ app.get('/curalacha', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'public', 'curalacha.html'));
 });
 
-app.get('/curalacha/lu', (req, res) => {
-    res.sendFile(path.join(__dirname, '../', 'public', 'lu.html'));
-});
+app.use('/curalacha/lu', express.static(path.join(__dirname, '../', 'public', 'lu.html')));
 
-app.get('/curalacha/lu/comentarios', (req, res) => {
-    res.sendFile(path.join(__dirname, '../', 'public', 'comments.html'));
-});
+app.use('/curalacha/lu/comentarios', express.static(path.join(__dirname, '../', 'public', 'comments.html')));
 
 
 const DateKey = (req, res, next) => {

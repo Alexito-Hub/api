@@ -38,12 +38,10 @@
         </div>
         <div class="blog-content">
             <!-- COMENTARIOS -->
-            
             <div id="comments-container"></div>
-
             <!-- FIN DE COMENTARIOS -->
             <div class="blogs">
-                <div class="form-header">Envia un comentario</div>
+                <div class="form-header">Envía un comentario</div>
                 <form id="myForm" action="#">
                     <div class="input-line">
                         <p class="text">Nombre</p>
@@ -62,61 +60,61 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/index.js"></script>
     <script>
-        // Función para cargar y mostrar comentarios al cargar la página
-        function loadComments() {
-            $.ajax({
-                url: '/api/comments?key=zio',
-                type: 'GET',
-                success: function (comments) {
-                    displayComments(comments);
-                },
-                error: function (error) {
-                    console.error('Error al obtener comentarios:', error);
-                }
-            });
-        }
-
-        // Función para mostrar comentarios
-        function displayComments(comments) {
-            $('#comments-container').empty();
-            comments.forEach(function (comment) {
-                const commentDiv = $('<div>').html(`<strong>${comment.name}:</strong> ${comment.body}`);
-                $('#comments-container').append(commentDiv);
-            });
-        }
-
-        // Función para agregar un comentario
-        function addComment(name, body) {
-            $.ajax({
-                url: '/api/comments?key=zio',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ name: name, body: body }),
-                success: function (response) {
-                    console.log('Comentario agregado exitosamente:', response);
-                    loadComments(); // Recargar comentarios después de agregar uno nuevo
-                },
-                error: function (error) {
-                    console.error('Error al agregar comentario:', error);
-                }
-            });
-        }
-
-        // Evento de clic en el botón de enviar
-        $('#submit').on('click', function () {
-            const name = $('#name').val();
-            const body = $('#body').val();
-            if (name && body) {
-                addComment(name, body);
-                // Limpiar los campos del formulario
-                $('#name').val('');
-                $('#body').val('');
+        $(document).ready(function () {
+            // Función para cargar y mostrar comentarios al cargar la página
+            function loadComments() {
+                $.ajax({
+                    url: '/api/comments?key=zio',
+                    type: 'GET',
+                    success: displayComments,
+                    error: function (error) {
+                        console.error('Error al obtener comentarios:', error);
+                    }
+                });
             }
+
+            // Función para mostrar comentarios
+            function displayComments(comments) {
+                const commentsContainer = $('#comments-container');
+                commentsContainer.empty();
+                comments.forEach(function (comment) {
+                    const commentDiv = $('<div>').html(`<strong>${comment.name}:</strong> ${comment.body}`);
+                    commentsContainer.append(commentDiv);
+                });
+            }
+
+            // Función para agregar un comentario
+            function addComment(name, body) {
+                $.ajax({
+                    url: '/api/comments?key=zio',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ name: name, body: body }),
+                    success: function (response) {
+                        console.log('Comentario agregado exitosamente:', response);
+                        loadComments(); // Recargar comentarios después de agregar uno nuevo
+                    },
+                    error: function (error) {
+                        console.error('Error al agregar comentario:', error);
+                    }
+                });
+            }
+
+            // Evento de clic en el botón de enviar
+            $('#submit').on('click', function () {
+                const name = $('#name').val();
+                const body = $('#body').val();
+                if (name && body) {
+                    addComment(name, body);
+                    // Limpiar los campos del formulario
+                    $('#name').val('');
+                    $('#body').val('');
+                }
+            });
+
+            // Cargar y mostrar comentarios al cargar la página
+            loadComments();
         });
-
-        // Cargar y mostrar comentarios al cargar la página
-        loadComments();
-
     </script>
 </body>
 
