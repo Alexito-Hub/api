@@ -15,7 +15,8 @@
     <link rel="shortcut icon" href="images/happy.png" type="image/x-icon">
     <link rel="stylesheet" href="css/index.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script><link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -81,10 +82,11 @@
         $('#comments-container').empty();
         comments.forEach(function (comment) {
             const commentDiv = $('<div class="comentario-principal-usuario">').html(`
-                <div class="comentario">
-                    <div class="usuario-comentario">
-                        <div class="texto">
-                            <a href="#" title="" class="nombre-usuario">${comment.name}</a> ${comment.body}
+                <div class="comentario-principal-usuario">
+                    <div class="comentario">
+                        <div class="usuario-comentario">
+                            <div class="nombre-usuario">${comment.name}</div>
+                            <div class="texto">${comment.body}</div>
                         </div>
                     </div>
                 </div>
