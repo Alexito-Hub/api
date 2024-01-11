@@ -2,7 +2,8 @@ require('../../data')
 const { Router } = require('express');
 const router = new Router();
 const fs = require('fs');
-const commentsPath = path.join(__dirname, 'comments.json');
+const path = require('path')
+const commentsPath = path.join(__dirname, '../../json/comments.json');
 
 // Middleware para obtener comentarios
 router.get('/', (req, res) => {
