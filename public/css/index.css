@@ -145,9 +145,7 @@ input::-webkit-inner-spin-button {
 
 
 /* Estilo para las burbujas de mensajes */
-
-.comentario-principal-usuario {
-
+.comentarios-usuarios {
     max-width: 70%;
     margin: 10px auto;
     clear: both;
@@ -165,17 +163,16 @@ input::-webkit-inner-spin-button {
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Agregado para ocultar la línea debajo del nombre */
-}
-
-.texto {
-    color: #000;
 }
 
 .nombre-usuario {
     font-weight: bold;
     color: #128C7E;
-    margin-bottom: 5px; /* Ajuste para separar el nombre del mensaje */
+    margin-bottom: 5px; /* Espaciado entre nombre y texto */
+}
+
+.texto {
+    color: #000;
 }
 
 /* Estilo para el formulario de comentarios */
@@ -194,7 +191,22 @@ input::-webkit-inner-spin-button {
 #submit {
     width: 100%;
     padding: 10px;
-    box-sizing: bor
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#submit {
+    background-color: #128C7E;
+    color: #fff;
+    cursor: pointer;
+}
+
+#submit:hover {
+    background-color: #0E6655;
+}
+
 
 
 
