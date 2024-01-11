@@ -84,7 +84,6 @@
             }
         });
     }
-    // Función para mostrar comentarios
     function displayComments(comments) {
         $('#comentarios-usuarios').empty();
         comments.forEach(function (comment) {
@@ -111,28 +110,28 @@
         }); 
     }
 
-function reaccionar(id) {
-    const reactionBtn = $(`#reaction-btn-${id}`);
-    const alreadyReacted = localStorage.getItem(`reaction-${id}`);
-
-    if (!alreadyReacted) {
-        $.ajax({
-            url: '/api/comments/react?key=zio',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({ id: id }),
-            success: function (response) {
-                console.log('Reacción agregada exitosamente:', response);
-                localStorage.setItem(`reaction-${id}`, 'true');
-                reactionBtn.prop('disabled', true);
-                loadComments();
-            },
-            error: function (error) {
-                console.error('Error al agregar reacción:', error);
-            }
-        });
+    function reaccionar(id) {
+        const reactionBtn = $(`#reaction-btn-${id}`);
+        const alreadyReacted = localStorage.getItem(`reaction-${id}`);
+    
+        if (!alreadyReacted) {
+            $.ajax({
+                url: '/api/comments/react?key=zio',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ id: id }),
+                success: function (response) {
+                    console.log('Reacción agregada exitosamente:', response);
+                    localStorage.setItem(`reaction-${id}`, 'true');
+                    reactionBtn.prop('disabled', true);
+                    loadComments();
+                },
+                error: function (error) {
+                    console.error('Error al agregar reacción:', error);
+                }
+            });
+        }
     }
-}
     function addComment(name, body) {
         $.ajax({
             url: '/api/comments?key=zio',
