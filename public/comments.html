@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rest Api creador por Zioo" />
-    <meta name="keywords" content="Api para WhatsApp Bot" />
-    <meta name="author" content="Zioo" />
-    <meta property="og:title" content="La curalacha">
-    <meta property="og:description" content="Welcome to the curalacha">
-    <meta property="og:image" content="images/happy.jpg">
+    <meta property="og:title" content="Feliz Cumpleaños 🎂">
+    <meta property="og:description" content="welcome to the network">
+    <meta property="og:image" content="https://telegra.ph/file/e86bee06a46ec81103ce6.png">
     <title>¡Esto es Especial!</title>
-    <link rel="icon" href="images/happy.png" type="image/x-icon">
-    <link rel="shortcut icon" href="images/happy.png" type="image/x-icon">
+    <link rel="icon" href="https://telegra.ph/file/e86bee06a46ec81103ce6.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://telegra.ph/file/e86bee06a46ec81103ce6.png" type="image/x-icon">
     <link rel="stylesheet" href="css/index.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script><link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
@@ -43,9 +40,6 @@
         </div>
 
         <div class="blog-content">
-            <!-- COMENTARIOS -->
-
-            <!-- FIN DE COMENTARIOS -->
             <div class="blogs">
                 <div class="form-header">Envía un comentario</div>
                 <form id="myForm" action="#">
@@ -63,7 +57,6 @@
 
             <div class="social-media-links3">
                 <div id="footer-u">
-                    <!-- Otro contenido del footer si lo tienes -->
                     <div class="footer-link">
                         <a href="https://www.instagram.com/iam._ziooo?igsh=OXdtcnJvbnZodmI4">Instagram</a>
                     <div class="footer-home">
@@ -99,7 +92,7 @@
                 <div class="comentario-principal-usuario">
                     <div class="comentario">
                         <div class="info-comentario">
-                            <span class="nombre-usuario">${comment.name}<img src="images/ufa.gif" width="10" height="10" style="margin-left: 5px;"/></span>
+                            <span class="nombre-usuario">${comment.name}<img src="images/ufa.gif" width="12" height="12" style="margin-left: 5px;"/></span>
                             <span class="nombre-usuario">${comment.date}</span>
                         </div>
                         <div class="usuario-comentario">
@@ -118,7 +111,6 @@
         }); 
     }
 
-    // En tu script principal, después de cargar los comentarios
 function reaccionar(id) {
     const reactionBtn = $(`#reaction-btn-${id}`);
     const alreadyReacted = localStorage.getItem(`reaction-${id}`);
@@ -131,11 +123,9 @@ function reaccionar(id) {
             data: JSON.stringify({ id: id }),
             success: function (response) {
                 console.log('Reacción agregada exitosamente:', response);
-                // Marcar que el usuario ya reaccionó para este comentario
                 localStorage.setItem(`reaction-${id}`, 'true');
-                // Deshabilitar el botón para evitar múltiples reacciones
                 reactionBtn.prop('disabled', true);
-                loadComments(); // Recargar comentarios después de agregar una reacción
+                loadComments();
             },
             error: function (error) {
                 console.error('Error al agregar reacción:', error);
@@ -143,10 +133,6 @@ function reaccionar(id) {
         });
     }
 }
-
-        
-        
-    // Función para agregar un comentario
     function addComment(name, body) {
         $.ajax({
             url: '/api/comments?key=zio',
@@ -155,27 +141,22 @@ function reaccionar(id) {
             data: JSON.stringify({ name: name, body: body }),
             success: function (response) {
                 console.log('Comentario agregado exitosamente:', response);
-                loadComments(); // Recargar comentarios después de agregar uno nuevo
+                loadComments();
             },
             error: function (error) {
                 console.error('Error al agregar comentario:', error);
             }
         });
     }
-
-    // Evento de clic en el botón de enviar
     $('#submit').on('click', function () {
         const name = $('#name').val();
         const body = $('#body').val();
         if (name && body) {
             addComment(name, body);
-            // Limpiar los campos del formulario
             $('#name').val('');
             $('#body').val('');
         }
     });
-
-    // Cargar y mostrar comentarios al cargar la página
     loadComments();
 
     </script>
