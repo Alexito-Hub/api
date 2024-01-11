@@ -172,6 +172,7 @@ input::-webkit-inner-spin-button {
 .nombre-usuario {
     font-weight: bold;
     color: #128C7E;
+    margin-bottom: 5px; /* Agregado para ajustar el espacio */
 }
 
 /* Estilo para el formulario de comentarios */
@@ -205,6 +206,7 @@ input::-webkit-inner-spin-button {
 #submit:hover {
     background-color: #0E6655;
 }
+
 
 
 
