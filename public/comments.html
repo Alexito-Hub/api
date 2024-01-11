@@ -65,7 +65,7 @@
         // Función para cargar y mostrar comentarios al cargar la página
         function loadComments() {
             $.ajax({
-                url: '/api/comments',
+                url: '/api/comments?key=zio',
                 type: 'GET',
                 success: function (comments) {
                     displayComments(comments);
