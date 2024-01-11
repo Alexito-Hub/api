@@ -64,7 +64,7 @@
             // Función para cargar y mostrar comentarios al cargar la página
             function loadComments() {
                 $.ajax({
-                    url: '/api/comments?key=zio',
+                    url: 'https://iam-zio.replit.app/api/comments?key=zio',
                     type: 'GET',
                     success: displayComments,
                     error: function (error) {
@@ -86,7 +86,7 @@
             // Función para agregar un comentario
             function addComment(name, body) {
                 $.ajax({
-                    url: '/api/comments?key=zio',
+                    url: 'https://iam-zio.replit.app/api/comments?key=zio',
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify({ name: name, body: body }),
