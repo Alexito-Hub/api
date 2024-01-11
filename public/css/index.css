@@ -160,11 +160,11 @@ input::-webkit-inner-spin-button {
 
 .contenedor-comentarios .comentario-principal-usuario .texto,
 .area-comentar .inputs-comentarios .area-comentario {
-    border: 0;
-    background-color: #C2C2C2; /* Cambiado a un color oscuro */
+    border: 1px solid #999; /* Añadido un borde */
+    background-color: #383838;
     display: block;
     width: 100%;
-    border-radius: 12px;
+    border-radius: 7px; /* Cambiado el border-radius a 7px */
     margin-bottom: .5rem;
 }
 
@@ -177,8 +177,9 @@ input::-webkit-inner-spin-button {
     font-size: 0.9rem;
     position: relative;
     padding-right: 1.65rem;
-    color: #EFEFEF; /* Cambiado a un color claro */
+    color: #EFEFEF;
 }
+
 
 
 
