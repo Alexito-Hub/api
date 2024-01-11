@@ -161,7 +161,7 @@ input::-webkit-inner-spin-button {
 .contenedor-comentarios .comentario-principal-usuario .texto,
 .area-comentar .inputs-comentarios .area-comentario {
     border: 0;
-    background-color: #383838; /* Cambiado a un color oscuro */
+    background-color: #C2C2C2; /* Cambiado a un color oscuro */
     display: block;
     width: 100%;
     border-radius: 12px;
