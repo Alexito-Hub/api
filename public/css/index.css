@@ -1211,7 +1211,9 @@ padding-bottom: 40px;
     height: auto;
     border-radius: 0px 10px 10px 0px;
 }
-
+.text {
+    color: white;
+}
 
 
 
@@ -1351,13 +1353,19 @@ form{
     font-family: poppins;
     font-size: 18px;
 }
-.form-header{
+.form-header {
     font-size: 24px;
     font-family: poppins;
     font-weight: 400;
     color: whitesmoke;
     padding: 28px;
+    text-align: center; /* Centrar horizontalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center;
 }
+
 .input-subject{
     width: 84%;
     padding:10px 20px;
