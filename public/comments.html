@@ -63,7 +63,7 @@
         </div>
         <div class="blog-content">
             <!-- COMENTARIOS -->
-            <div id="comments-container"></div>
+            <div id="comments-container" class="comentarios-usuarios"></div>
             <!-- FIN DE COMENTARIOS -->
             <div class="blogs">
                 <div class="form-header">Envía un comentario</div>
@@ -85,65 +85,68 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/index.js"></script>
     <script>
-// Función para cargar y mostrar comentarios al cargar la página
-function loadComments() {
-    $.ajax({
-        url: '/api/comments?key=zio',
-        type: 'GET',
-        success: function (comments) {
-            displayComments(comments);
-        },
-        error: function (error) {
-            console.error('Error al obtener comentarios:', error);
-        }
-    });
-}
-
-// Función para mostrar comentarios
-function displayComments(comments) {
-    const commentsContainer = $('#comments-container');
-    commentsContainer.empty();
-
-    if (comments && comments.length > 0) {
-        comments.forEach(function (comment) {
-            const commentDiv = $('<div>').html(`<strong>${comment.name}:</strong> ${comment.body}`);
-            commentsContainer.append(commentDiv);
-        });
-    } else {
-        commentsContainer.html('<p>No hay comentarios.</p>');
-    }
-}
-
-        function addComment(name, body) {
-            $.ajax({
-                url: '/api/comments?key=zio', // Agrega la clave para autenticación
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ name: name, body: body }),
-                success: function (response) {
-                    console.log('Comentario agregado exitosamente:', response);
-                    loadComments(); // Recargar comentarios después de agregar uno nuevo
-                },
-                error: function (error) {
-                    console.error('Error al agregar comentario:', error);
-                }
-            });
-        }
-
-        // Evento de clic en el botón de enviar
-        $('#submit').on('click', function () {
-            const name = $('#name').val();
-            const body = $('#body').val();
-            if (name && body) {
-                addComment(name, body);
-                // Limpiar los campos del formulario
-                $('#name').val('');
-                $('#body').val('');
+    // Función para cargar y mostrar comentarios al cargar la página
+    function loadComments() {
+        $.ajax({
+            url: '/api/comments?key=zio',
+            type: 'GET',
+            success: function (comments) {
+                displayComments(comments);
+            },
+            error: function (error) {
+                console.error('Error al obtener comentarios:', error);
             }
         });
+    }
 
-        // Cargar y mostrar comentarios al cargar la página
-        loadComments();
+    // Función para mostrar comentarios
+    function displayComments(comments) {
+        $('#comments-container').empty();
+        comments.forEach(function (comment) {
+            const commentDiv = $('<div class="comentario-principal-usuario">').html(`
+                <div class="comentario">
+                    <div class="usuario-comentario">
+                        <div class="texto">
+                            <a href="#" title="" class="nombre-usuario">${comment.name}</a> ${comment.body}
+                        </div>
+                    </div>
+                </div>
+            `);
+            $('#comments-container').append(commentDiv);
+        });
+    }
+
+    // Función para agregar un comentario
+    function addComment(name, body) {
+        $.ajax({
+            url: '/api/comments?key=zio',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ name: name, body: body }),
+            success: function (response) {
+                console.log('Comentario agregado exitosamente:', response);
+                loadComments(); // Recargar comentarios después de agregar uno nuevo
+            },
+            error: function (error) {
+                console.error('Error al agregar comentario:', error);
+            }
+        });
+    }
+
+    // Evento de clic en el botón de enviar
+    $('#submit').on('click', function () {
+        const name = $('#name').val();
+        const body = $('#body').val();
+        if (name && body) {
+            addComment(name, body);
+            // Limpiar los campos del formulario
+            $('#name').val('');
+            $('#body').val('');
+        }
+    });
+
+    // Cargar y mostrar comentarios al cargar la página
+    loadComments();
 
     </script>
 </body>
