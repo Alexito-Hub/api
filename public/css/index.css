@@ -158,7 +158,7 @@ input::-webkit-inner-spin-button {
 }
 
 #comentarios-usuarios .usuario-comentario {
-    background-color: #FDCAE1;
+    background-color: #a349a4;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -166,12 +166,12 @@ input::-webkit-inner-spin-button {
 
 #comentarios-usuarios .nombre-usuario {
     font-weight: bold;
-    color: #000000;
+    color: #FFFFFF;
     margin-bottom: 5px; /* Espaciado entre nombre y texto */
 }
 
 #comentarios-usuarios .texto {
-    color: #FFFFFF;
+    color: #000000;
 }
 
 /* Estilo para el formulario de comentarios específico para comentarios-usuarios */
@@ -191,19 +191,19 @@ input::-webkit-inner-spin-button {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
+    border: 5px solid #CCCCCC;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
 #comentarios-usuarios #submit {
-    background-color: #fdcae1;
+    background-color: #a18594;
     color: #fff;
     cursor: pointer;
 }
 
 #comentarios-usuarios #submit:hover {
-    background-color: #fdcae1;
+    background-color: #a18594;
 }
 
 
