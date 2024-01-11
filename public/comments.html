@@ -79,7 +79,6 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/index.js"></script>
     <script>
-    // Función para cargar y mostrar comentarios al cargar la página
     function loadComments() {
         $.ajax({
             url: '/api/comments?key=zio',
@@ -92,25 +91,61 @@
             }
         });
     }
-
     // Función para mostrar comentarios
     function displayComments(comments) {
         $('#comentarios-usuarios').empty();
         comments.forEach(function (comment) {
-            const commentDiv = $('<div class="comentario-principal-usuario">').html(`
+            const commentDiv = $('<div class="comentario-principal-usuario">').html(`</br>
                 <div class="comentario-principal-usuario">
                     <div class="comentario">
+                        <div class="info-comentario">
+                            <span class="nombre-usuario">${comment.name}<img src="images/happy.png" width="10" height="10" style="margin-left: 5px;"/></span>
+                            <span class="nombre-usuario">${comment.date}</span>
+                        </div>
                         <div class="usuario-comentario">
-                            <div class="nombre-usuario">${comment.name}</div>
-                            <div class="texto">${comment.body}</div>
+                            <div class="texto">
+                            ${comment.body}
+                            
+                            </div>
+                            <div class="reacciones">
+                                <button class="reaccion" onclick="reaccionar(${comment.id})">❤️ ${comment.like || 0}</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             `);
             $('#comentarios-usuarios').append(commentDiv);
-        });
+        }); 
     }
 
+    // En tu script principal, después de cargar los comentarios
+function reaccionar(id) {
+    const reactionBtn = $(`#reaction-btn-${id}`);
+    const alreadyReacted = localStorage.getItem(`reaction-${id}`);
+
+    if (!alreadyReacted) {
+        $.ajax({
+            url: '/api/comments/react?key=zio',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ id: id }),
+            success: function (response) {
+                console.log('Reacción agregada exitosamente:', response);
+                // Marcar que el usuario ya reaccionó para este comentario
+                localStorage.setItem(`reaction-${id}`, 'true');
+                // Deshabilitar el botón para evitar múltiples reacciones
+                reactionBtn.prop('disabled', true);
+                loadComments(); // Recargar comentarios después de agregar una reacción
+            },
+            error: function (error) {
+                console.error('Error al agregar reacción:', error);
+            }
+        });
+    }
+}
+
+        
+        
     // Función para agregar un comentario
     function addComment(name, body) {
         $.ajax({

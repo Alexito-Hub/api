@@ -167,14 +167,13 @@ input::-webkit-inner-spin-button {
 #comentarios-usuarios .nombre-usuario {
     font-weight: bold;
     color: #FFFFFF;
-    margin-bottom: 5px; /* Espaciado entre nombre y texto */
+    margin-bottom: 5px; 
 }
 
 #comentarios-usuarios .texto {
     color: #000000;
 }
 
-/* Estilo para el formulario de comentarios específico para comentarios-usuarios */
 #comentarios-usuarios .form-header {
     font-size: 18px;
     font-weight: bold;
@@ -204,6 +203,70 @@ input::-webkit-inner-spin-button {
 
 #comentarios-usuarios #submit:hover {
     background-color: #a18594;
+}
+
+
+
+
+
+
+
+.comentario {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.reacciones {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5px;
+}
+
+.reaccion {
+    background-color: #795E6C;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 0px;
+    font-size: 7px;
+}
+.reaccion[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+
+.comentario {
+    margin-bottom: 5px;
+}
+
+.info-comentario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #Fff;
+    font-size: 12px;
+    margin-bottom: 0px;
+}
+
+.id {
+    display: none;
+}
+
+.nombre-usuario {
+    font-weight: bold;
+    margin-right: 0px;
+}
+
+.comentario {
+    margin-bottom: 15px; 
+}
+
+.comentario:first-child {
+    margin-top: 15px;
 }
 
 
