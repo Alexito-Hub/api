@@ -30,13 +30,15 @@ app.get('/contacts', (req, res) => {
 
 
 app.get('/curalacha', (req, res) => {
-	res.sendFile(path.join(__dirname, '../', 'public', 'curalacha.html'));
+    res.sendFile(path.join(__dirname, '../', 'public', 'curalacha.html'));
 });
+
 app.get('/curalacha/lu', (req, res) => {
-	res.sendFile(path.join(__dirname, '../', 'public', 'lu.html'));
+    res.sendFile(path.join(__dirname, '../', 'public', 'lu.html'));
 });
+
 app.get('/curalacha/lu/comentarios', (req, res) => {
-	res.sendFile(path.join(__dirname, '../', 'public', 'comentarios.html'));
+    res.sendFile(path.join(__dirname, '../', 'public', 'comments.ios.html'));
 });
 
 
@@ -117,6 +119,8 @@ app.use('/api/openai', require('./routers/api/openai'));
 app.use('/api/frase', require('./routers/api/frase'));
 app.use('/api/fbdl', require('./routers/api/facebook')); 
 app.use('/api/telegraph', require('./routers/api/telegra')); 
+
+app.use('/api/comments', require('./routers/api/comments')); 
 
 app.use((req, res) => {
 	res.status(404).sendFile(path.join(__dirname, '../', 'public', '404.html'));

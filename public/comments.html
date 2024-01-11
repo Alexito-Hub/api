@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rest Api creador por Zioo" />
+    <meta name="keywords" content="Api para WhatsApp Bot" />
+    <meta name="author" content="Zioo" />
+    <meta property="og:title" content="La curalacha">
+    <meta property="og:description" content="Welcome to the curalacha">
+    <meta property="og:image" content="images/happy.jpg">
+    <title>¡Esto es Especial!</title>
+    <link rel="icon" href="images/happy.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/happy.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+</head>
+
+<body>
+    <div id="all">
+        <div class="cursor"></div>
+        <div id="loader">
+            <span class="color">Comentarios</span>
+        </div>
+        <div id="breaker"></div>
+        <div id="breaker-two"></div>
+        <div id="blog-header">
+            <div class="social-media-links2">
+                <div id="footer-u">
+                    <div class="secondline">
+                        La Curalacha
+                        <span class="txt-rotate color" data-period="1200" data-rotate='[ " Ale.", " Jamie.", " Luuu." ]'></span>
+                        <span class="slash">|</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blog-content">
+            <!-- COMENTARIOS -->
+            
+            <div id="comments-container"></div>
+
+            <!-- FIN DE COMENTARIOS -->
+            <div class="blogs">
+                <div class="form-header">Envia un comentario</div>
+                <form id="myForm" action="#">
+                    <div class="input-line">
+                        <p class="text">Nombre</p>
+                        <input id="name" type="text" placeholder="Escribe tu nombre" class="input-name">
+                    </div>
+                    <div class="input-line">
+                        <p class="text">Mensaje</p>
+                        <textarea id="body" class="input-textarea" placeholder="Escribe tu mensaje"></textarea>
+                    </div>
+                    <button type="button" id="submit" value="send">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        // Función para cargar y mostrar comentarios al cargar la página
+        function loadComments() {
+            $.ajax({
+                url: '/api/comments',
+                type: 'GET',
+                success: function (comments) {
+                    displayComments(comments);
+                },
+                error: function (error) {
+                    console.error('Error al obtener comentarios:', error);
+                }
+            });
+        }
+
+        // Función para mostrar comentarios
+        function displayComments(comments) {
+            $('#comments-container').empty();
+            comments.forEach(function (comment) {
+                const commentDiv = $('<div>').html(`<strong>${comment.name}:</strong> ${comment.body}`);
+                $('#comments-container').append(commentDiv);
+            });
+        }
+
+        // Función para agregar un comentario
+        function addComment(name, body) {
+            $.ajax({
+                url: '/api/comments',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ name: name, body: body }),
+                success: function (response) {
+                    console.log('Comentario agregado exitosamente:', response);
+                    loadComments(); // Recargar comentarios después de agregar uno nuevo
+                },
+                error: function (error) {
+                    console.error('Error al agregar comentario:', error);
+                }
+            });
+        }
+
+        // Evento de clic en el botón de enviar
+        $('#submit').on('click', function () {
+            const name = $('#name').val();
+            const body = $('#body').val();
+            if (name && body) {
+                addComment(name, body);
+                // Limpiar los campos del formulario
+                $('#name').val('');
+                $('#body').val('');
+            }
+        });
+
+        // Cargar y mostrar comentarios al cargar la página
+        loadComments();
+
+    </script>
+</body>
+
+</html>
