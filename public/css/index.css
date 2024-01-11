@@ -144,51 +144,50 @@ input::-webkit-inner-spin-button {
 
 
 
-/* Estilo para las burbujas de mensajes */
-.comentarios-usuarios {
+#comentarios-usuarios {
     max-width: 70%;
     margin: 10px auto;
     clear: both;
     overflow: hidden;
 }
 
-.comentario {
+#comentarios-usuarios .comentario {
     float: left;
     clear: both;
     margin-bottom: 10px;
 }
 
-.usuario-comentario {
-    background-color: #DCF8C6;
+#comentarios-usuarios .usuario-comentario {
+    background-color: #CDCDCD;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.nombre-usuario {
+#comentarios-usuarios .nombre-usuario {
     font-weight: bold;
     color: #128C7E;
     margin-bottom: 5px; /* Espaciado entre nombre y texto */
 }
 
-.texto {
+#comentarios-usuarios .texto {
     color: #000;
 }
 
-/* Estilo para el formulario de comentarios */
-.form-header {
+/* Estilo para el formulario de comentarios específico para comentarios-usuarios */
+#comentarios-usuarios .form-header {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.input-line {
+#comentarios-usuarios .input-line {
     margin-bottom: 15px;
 }
 
-.input-name,
-.input-textarea,
-#submit {
+#comentarios-usuarios .input-name,
+#comentarios-usuarios .input-textarea,
+#comentarios-usuarios #submit {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -197,15 +196,16 @@ input::-webkit-inner-spin-button {
     margin-bottom: 10px;
 }
 
-#submit {
+#comentarios-usuarios #submit {
     background-color: #128C7E;
     color: #fff;
     cursor: pointer;
 }
 
-#submit:hover {
+#comentarios-usuarios #submit:hover {
     background-color: #0E6655;
 }
+
 
 
 
