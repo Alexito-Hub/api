@@ -4,21 +4,21 @@ const fs = require('fs');
 const path = require('path');
 const commentsPath = path.join(__dirname, '../../json/comments.json');
 
-// Middleware para obtener comentarios
-// Middleware para obtener comentarios
 router.get('/', (req, res) => {
   try {
-    // Lee el archivo de comentarios
-    const commentsData = fs.readFileSync(commentsPath, 'utf-8');
-    
-    // Verifica si el archivo está vacío o no contiene un JSON válido
-    const comments = commentsData ? JSON.parse(commentsData) : [];
-
-    // Retorna los comentarios como respuesta JSON
-    res.json({
-      status: 200,
-      comments: comments,
-    });
+    if (fs.existsSync(commentsPath)) {
+      const commentsData = fs.readFileSync(commentsPath, 'utf-8');
+      const comments = commentsData ? JSON.parse(commentsData) : [];
+      res.json({
+        status: 200,
+        comments: comments,
+      });
+    } else {
+      res.json({
+        status: 200,
+        comments: [], // Retorna un arreglo vacío si el archivo no existe
+      });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
   }
 });
 
-// Middleware para agregar comentarios
+
 router.post('/', (req, res) => {
   try {
     const { name, body } = req.body;
@@ -41,15 +41,15 @@ router.post('/', (req, res) => {
     }
 
     const newComment = { name, body };
-    const existingComments = JSON.parse(fs.readFileSync(commentsPath, 'utf-8')) || [];
 
-    // Agrega el nuevo comentario al arreglo existente
-    existingComments.push(newComment);
+    if (fs.existsSync(commentsPath)) {
+      const existingComments = JSON.parse(fs.readFileSync(commentsPath, 'utf-8')) || [];
+      existingComments.push(newComment);
+      fs.writeFileSync(commentsPath, JSON.stringify(existingComments, null, 2));
+    } else {
+      fs.writeFileSync(commentsPath, JSON.stringify([newComment], null, 2));
+    }
 
-    // Escribe el arreglo actualizado en el archivo
-    fs.writeFileSync(commentsPath, JSON.stringify(existingComments, null, 2));
-
-    // Retorna una respuesta JSON indicando el éxito
     res.status(201).json({
       status: 201,
       message: 'Comentario agregado exitosamente',
@@ -62,6 +62,7 @@ router.post('/', (req, res) => {
     });
   }
 });
+
 
 
 module.exports = router;
