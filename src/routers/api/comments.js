@@ -29,36 +29,53 @@ router.get('/', (req, res) => {
 });
 
 
+// Middleware para agregar comentarios
 router.post('/', (req, res) => {
   try {
     const { name, body } = req.body;
 
     if (!name || !body) {
       return res.status(400).json({
+        creator: name,
         status: 400,
-        error: 'Nombre y cuerpo del comentario son obligatorios',
+        result: { error: 'Nombre y cuerpo del comentario son obligatorios' }
       });
     }
 
-    const newComment = { name, body };
+    // Intentar leer el archivo JSON existente
+    let existingComments = [];
+    try {
+      existingComments = JSON.parse(fs.readFileSync(commentsPath, 'utf-8')) || [];
+    } catch (readError) {
+      console.error('Error al leer el archivo JSON:', readError);
+    }
 
-    if (fs.existsSync(commentsPath)) {
-      const existingComments = JSON.parse(fs.readFileSync(commentsPath, 'utf-8')) || [];
-      existingComments.push(newComment);
+    const newComment = { name, body };
+    existingComments.push(newComment);
+
+    // Intentar escribir el archivo JSON actualizado
+    try {
       fs.writeFileSync(commentsPath, JSON.stringify(existingComments, null, 2));
-    } else {
-      fs.writeFileSync(commentsPath, JSON.stringify([newComment], null, 2));
+    } catch (writeError) {
+      console.error('Error al escribir el archivo JSON:', writeError);
+      return res.status(500).json({
+        creator: name,
+        status: 500,
+        result: { error: 'Error al agregar comentario' }
+      });
     }
 
     res.status(201).json({
+      creator: name,
       status: 201,
-      message: 'Comentario agregado exitosamente',
+      result: { message: 'Comentario agregado exitosamente' }
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({
+      creator: name,
       status: 500,
-      error: 'Error al agregar comentario',
+      result: { error: 'Error al agregar comentario' }
     });
   }
 });
