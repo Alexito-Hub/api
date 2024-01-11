@@ -144,33 +144,46 @@ input::-webkit-inner-spin-button {
 
 
 
+/* Contenedor de comentarios */
+.comentarios-usuarios {
+    width: calc(100% - 2.5rem);
+}
+
+/* Enlaces en contenedor de comentarios */
+.contenedor-comentarios a {
+    text-decoration: none;
+}
+
+/* Estilo del nombre de usuario en comentarios */
+.comentarios-usuarios .nombre-usuario {
+    font-weight: bold;
+    margin-right: 0.5rem;
+    color: inherit;
+}
+
+/* Estilo del área de texto del comentario y área para comentar */
+.contenedor-comentarios .comentario-principal-usuario .texto,
+.area-comentar .inputs-comentarios .area-comentario {
+    border: 0;
+    background-color: #F0F0F0;
+    display: block;
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo del texto del comentario en comentarios de usuarios */
 .comentarios-usuarios .comentario-principal-usuario .texto {
     padding: 10px 15px;
     width: auto;
     display: inline-block;
     max-width: 100%;
-    margin-bottom: .25rem;
+    margin-bottom: 0.25rem;
     font-size: 0.9rem;
     position: relative;
     padding-right: 1.65rem;
 }
 
-.comentarios-usuarios .comentario-principal-usuario .comentar-comentario {
-    width: 100%;
-    display: flex;
-}
-
-.comentarios-usuarios .comentar-publicacion input[type="text"] {
-    border: 0;
-    background-color: #E1E1E1;
-    flex-grow: 1;
-    flex-basis: 0;
-    padding: 8px 10px;
-    font-size: .9rem;
-    border-radius: 8px;
-    margin-right: 0.5rem;
-    margin-left: 0.5rem;
-}
 
 
 
