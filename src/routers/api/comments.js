@@ -43,11 +43,16 @@ router.post('/', (req, res) => {
     }
 
     // Intentar leer el archivo JSON existente
-    let existingComments = [];
+    let existingComments;
     try {
-      existingComments = JSON.parse(fs.readFileSync(commentsPath, 'utf-8')) || [];
+      const fileContent = fs.readFileSync(commentsPath, 'utf-8');
+      existingComments = JSON.parse(fileContent);
+      if (!Array.isArray(existingComments)) {
+        existingComments = [];
+      }
     } catch (readError) {
       console.error('Error al leer el archivo JSON:', readError);
+      existingComments = [];
     }
 
     const newComment = { name, body };
