@@ -152,19 +152,21 @@ input::-webkit-inner-spin-button {
     text-decoration: none;
 }
 
+
 .comentarios-usuarios .nombre-usuario {
     font-weight: bold;
     margin-right: .5rem;
     color: inherit;
 }
 
+
 .contenedor-comentarios .comentario-principal-usuario .texto,
 .area-comentar .inputs-comentarios .area-comentario {
-    border: 1px solid #999; /* Añadido un borde */
-    background-color: #383838;
+    border: 0;
+    background-color: #F0F0F0;
     display: block;
     width: 100%;
-    border-radius: 7px; /* Cambiado el border-radius a 7px */
+    border-radius: 12px;
     margin-bottom: .5rem;
 }
 
@@ -177,9 +179,7 @@ input::-webkit-inner-spin-button {
     font-size: 0.9rem;
     position: relative;
     padding-right: 1.65rem;
-    color: #EFEFEF;
 }
-
 
 
 
