@@ -28,13 +28,16 @@ app.get('/contacts', (req, res) => {
 	res.sendFile(path.join(__dirname, '../', 'public', 'contacts.html'));
 });
 
-
 app.get('/curalacha', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'public', 'curalacha.html'));
 });
 
 app.get('/lu', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'public', 'lu.html'));
+});
+
+app.get('/happy', (req, res) => {
+    res.sendFile(path.join(__dirname, '../', 'public', 'happy.html'));
 });
 
 app.get('/comentarios', (req, res) => {
