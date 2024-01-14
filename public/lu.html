@@ -51,13 +51,12 @@
                         <div class="blog-text">
                             <h3>¡Esto es Especial!</h3>
                             <p>¡Hola Luciana! Estamos llenos de emoción porque se acerca tu día especial. Hemos preparado algo especial para ti y no podemos esperar a que lo descubras. Visita nuestra página el 14 de enero para disfrutar de las sorpresas que hemos preparado. ¡La cuenta regresiva ha comenzado! 🎉</p>
-                            <a class="btnfos btnfos-1" href="#modal1">
+                            <a class="btnfos btnfos-1" href="happy">
                                 <svg>
                                     <rect x="0" y="0" fill="none" width="100%" height="100%"/>
                                 </svg>
                                 Continuar
                             </a>
-                            <div id="countdown"></div>
                         </div>
                     </a>
                 </div>  
@@ -82,34 +81,6 @@
 
     <script src="js/jquery.min.js"></script>
     <script src="js/index.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          const countdownElement = document.getElementById('countdown');
-        
-          // Set the target date to 12pm Peru time
-          const targetDate = new Date();
-        targetDate.setHours(1, 0, 0, 0);
-        
-          function updateCountdown() {
-            const currentDate = new Date();
-            const timeDifference = targetDate - currentDate;
-        
-            if (timeDifference > 0) {
-              const hours = Math.floor(timeDifference / (1000 * 60 * 60));
-              const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-              const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-        
-              countdownElement.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
-            } else {
-              countdownElement.innerHTML = '¡Ya está disponible!';
-              // Aquí puedes habilitar tu sitio web o realizar otras acciones necesarias
-            }
-          }
-        
-          setInterval(updateCountdown, 1000);
-        });
-
-    </script>
 </body>
 
 </html>
