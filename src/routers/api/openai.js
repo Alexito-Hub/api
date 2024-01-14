@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { Router } = require('express');
-const { Configuration, OpenAIApi } = require('openai'); // Asegúrate de tener instalado el paquete
+const { Configuration, OpenAIApi } = require('openai');
 
 const router =new Router();
 
@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   const { query } = req.query
 
   try {
-    const openAIKey = process.env.OPENAI_KEY; // Asegúrate de que OPENAI_KEY esté definida en tu archivo .env
+    const openAIKey = process.env.OPENAI_KEY;
     const configuration = new Configuration({
       apiKey: openAIKey,
     });
@@ -25,14 +25,14 @@ router.get('/', async (req, res) => {
     });
 
     res.json({
-      creator: 'TeamFX',
+      creator: 'Zioo',
       status: 200,
       result: response.data.choices[0].text.trim()
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({ 
-      creator: 'TeamFX', 
+      creator: 'Zioo', 
       status: false, 
       message: 'Error al procesar la consulta.'
     });
